@@ -1,8 +1,10 @@
-#!/bin/bash 
+#!/bin/bash
 
+while :
+do
 echo "Please enter path of dirctory source: "
 
-read src 
+read src
 
 echo "Please enter path of destenation derctoriy: "
 
@@ -10,9 +12,10 @@ read dst
 
 echo "Please type the file extention like "png , mp4" :"
 
-read ext 
+read ext
 
-find $src -type f -iname "*.$ext" -exec mv --backup=numbered -t $dst {} + 
+find $src -type f -iname "*.$ext" -exec mv --backup=numbered -t $dst {} +
 
+echo "Please note to stop press CTRL+C"
 
-
+done
