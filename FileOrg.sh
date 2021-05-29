@@ -1,23 +1,30 @@
 #!/bin/bash 
-#author : sudobyter
+
+
+#colors
+RED="\e[31m"
+
+GREEN="\e[32m"
+
+YELLOW="\e[33m"
 
 while : 
 do
-echo "Please enter path of dirctory source: "
+echo -e "${RED}Please enter path of dirctory source: "
 
 read src 
 
-echo "Please enter path of destenation derctoriy: "
+echo -e "${GREEN}Path of destenation derctoriy: "
 
 read dst
 
-echo "Please type the file extention like "png , mp4" :"
+echo -e "${YELLOW}Please type the file extention like "png , mp4" :"
 
 read ext 
 
 find $src -type f -iname "*.$ext" -exec mv --backup=numbered -t $dst {} + 
 
-echo "Please note to stop press CTRL+C"
+echo -e "${RED}Please note to stop press CTRL+C"
 
 done 
 
