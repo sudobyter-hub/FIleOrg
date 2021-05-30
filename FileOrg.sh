@@ -1,5 +1,6 @@
 #!/bin/bash 
-
+#Author : Ali Waleed 
+#Github : github.com/sudobyter-hub
 
 #colors
 RED="\e[31m"
@@ -28,5 +29,7 @@ read ext
 find $src -type f -iname "*.$ext" -exec mv --backup=numbered -t $dst {} + 
 
 echo -e "${GREEN} DONE total files in $dst are $(cd $dst ; ls $dst | wc -w)"
+
+echo -e "${YELLOW} To stop the tool press CTRL + C"
 
 done
