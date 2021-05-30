@@ -10,9 +10,12 @@ YELLOW="\e[33m"
 
 while : 
 do
+	echo -e "${GREEN} Welcome" $USER
 echo -e "${RED}Please enter path of dirctory source: "
 
 read src 
+
+echo -e "${RED} There are $(cd $src ; ls | wc -w) files in this dirctory"
 
 echo -e "${GREEN}Path of destenation derctoriy: "
 
@@ -24,7 +27,6 @@ read ext
 
 find $src -type f -iname "*.$ext" -exec mv --backup=numbered -t $dst {} + 
 
-echo -e "${RED}Please note to stop press CTRL+C"
+echo -e "${GREEN} DONE total files in $dst are $(cd $dst ; ls $dst | wc -w)"
 
-done 
-
+done
