@@ -5,7 +5,7 @@
 
 
 # Installation 
-1. git clone https://github.com/sudobyter-hub/FIleOrg.git
+1. git clone https://github.com/sudobyter-hub/FileOrg.git
 1. cd FileOrg
 1. chmod +x FileOrg
 1. sudo bash FIleOrg 
