@@ -11,7 +11,7 @@
 1. sudo bash FIleOrg 
 
 # Uninstallation
-1. rm -rf FileOrg 
+- rm -rf FileOrg 
 
 # Contact me
 if you have and sugestions please feel free to contact me
