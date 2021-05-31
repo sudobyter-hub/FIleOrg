@@ -1,5 +1,5 @@
 # FIleOrg
-### very simple tool to move files from directories to one directory 
+### Very simple tool to move files from directories and sub dirctoires to one directory 
 # Why this tool ? 
 #### I lost files then I recoverd them but they were messy not orginized. therefor I created this tool to orgnize my files. to keep files with different extenstions isolated and delete the unwanted files.
 
@@ -10,6 +10,8 @@
 1. chmod +x FileOrg
 1. sudo bash FIleOrg 
 
+# Uninstallation
+1. rm -rf FileOrg 
 
 # Contact me
 if you have and sugestions please feel free to contact me
