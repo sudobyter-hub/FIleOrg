@@ -5,14 +5,12 @@
 
 
 # Installation 
-git clone https://github.com/sudobyter-hub/FIleOrg.git
-<p>&nbsp;</p>
-cd FileOrg
-<p>&nbsp;</p>
-chmod +x FileOrg
-<p>&nbsp;</p>
-sudo bash FIleOrg 
+1.git clone https://github.com/sudobyter-hub/FIleOrg.git
+1.cd FileOrg
+1.chmod +x FileOrg
+1.sudo bash FIleOrg 
 
 
-##### Feel free to contact me
+# Contact me
+if you have and sugestions please feel free to contact me
 Email : sudobyter@gmail.com
