@@ -1,6 +1,6 @@
 # FIleOrg
 ### Very simple tool to move files from directories and sub dirctoires to one directory 
-# Why this tool ? 
+# Why this tool :interrobang:
 #### I lost files then I recoverd them but they were messy not orginized. therefor I created this tool to orgnize my files. to keep files with different extenstions isolated and delete the unwanted files.
 
 
