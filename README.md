@@ -5,13 +5,13 @@
 
 
 # Installation 
-1. '/git clone https://github.com/sudobyter-hub/FileOrg.git'
-1. '/cd FileOrg'
-1. '/chmod +x FileOrg'
-1. '/sudo bash FIleOrg' 
+1. `git clone https://github.com/sudobyter-hub/FileOrg.git`
+1. `cd FileOrg`
+1. `chmod +x FileOrg`
+1. `sudo bash FIleOrg` 
 
 # Uninstallation
-- '/rm -rf FileOrg' 
+- `rm -rf FileOrg`
 
 # Contact me
 if you have and sugestions please feel free to contact me
