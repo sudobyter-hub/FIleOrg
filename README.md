@@ -15,4 +15,4 @@
 
 # Contact me
 if you have and sugestions please feel free to contact me
-- :mailbox_with_mail: Email : sudobyter@gmail.com
+- :mailbox_with_mail: Email : developer@aliwaleed.xyz
