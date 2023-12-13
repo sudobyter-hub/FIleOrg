@@ -1,18 +1,19 @@
-# FIleOrg
-### Very simple tool to move files from directories and sub dirctoires to one directory 
-# Why this tool :interrobang:
-#### I lost files then I recoverd them but they were messy not orginized. therefor I created this tool to orgnize my files. to keep files with different extenstions isolated and delete the unwanted files.
+# 📁 FileOrg
+
+FileOrg is a simple and efficient tool designed to help you organize your files by moving them from various directories and subdirectories into a single destination directory. No more messy files scattered around!
+
+## Why FileOrg? 🤔
+
+Have you ever lost track of your files or recovered them in a disorganized state? FileOrg was created to solve this problem. It's your go-to solution for keeping files with different extensions neatly organized while removing unwanted clutter.
+
+## Features 🚀
+
+- Move files from multiple directories and subdirectories into one central location.
+- Categorize files by their extensions for easy access and management.
+- Cross-platform compatibility: works on Linux, macOS, and Windows (Cygwin/MSYS).
 
 
-# Installation 
-1. `git clone https://github.com/sudobyter-hub/FileOrg.git`
-1. `cd FileOrg`
-1. `chmod +x FileOrg`
-1. `sudo bash FileOrg` 
+Contact
+If you have any suggestions or questions, please feel free to reach out:
 
-# Uninstallation
-- `rm -rf FileOrg`
-
-# Contact me
-if you have and sugestions please feel free to contact me
-- :mailbox_with_mail: Email : developer@aliwaleed.xyz
+✉️ Email: sudobyter@gmail.com
