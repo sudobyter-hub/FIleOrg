@@ -6,96 +6,78 @@
 RED="\e[31m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
+BLUE="\e[34m"
 RESET="\e[0m"
 
-# Detect the operating system
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    # Linux
-    MOVE_COMMAND="rsync -a --progress --remove-source-files"
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    # macOS
-    MOVE_COMMAND="mv"
-elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
-    # Windows (Cygwin/MSYS)
-    MOVE_COMMAND="robocopy"
-else
-    echo -e "${RED}Unsupported operating system. This script is compatible with Linux, macOS, and Windows (Cygwin/MSYS)."
-    exit 1
-fi
+# Detect the operating system and set MOVE_COMMAND
+case "$OSTYPE" in
+  "linux-gnu"*) MOVE_COMMAND="rsync -a --progress --remove-source-files" ;;
+  "darwin"*)    MOVE_COMMAND="mv" ;;
+  "msys"|"cygwin") MOVE_COMMAND="robocopy" ;;
+  *) echo -e "${RED}Unsupported OS. This script supports Linux, macOS, and Windows (Cygwin/MSYS).${RESET}"; exit 1 ;;
+esac
 
-while :
-do
-    clear  # Clear the terminal screen for a clean interface
+# Main Loop
+while true; do
+    clear
+    echo -e "${GREEN}Welcome, $USER. This is an advanced file organization tool.${RESET}"
+    echo -e "${YELLOW}Enter source directory path (or 'q' to quit): ${RESET}"
+    read -r src
 
-    echo -e "${GREEN}Welcome, $USER"
-    echo -e "${RED}Please enter the source directory path (or 'q' to quit): "
-    read src
+    [[ "$src" == "q" ]] && break
 
-    if [ "$src" = "q" ]; then
-        break
-    fi
-
-    if [ ! -d "$src" ]; then
-        echo -e "${RED}Source directory does not exist. Please enter a valid path."
+    if [[ ! -d "$src" ]]; then
+        echo -e "${RED}Source directory does not exist. Please enter a valid path.${RESET}"
+        sleep 2
         continue
     fi
 
-    echo -e "${RED}Detecting and categorizing files by extensions..."
-
-    # Create an associative array to store file counts by extension
+    echo -e "${BLUE}Detecting and categorizing files by extensions...${RESET}"
     declare -A extensions
 
-    # Loop through files in the source directory and categorize them
     while IFS= read -r -d '' file; do
-        if [ -f "$file" ]; then
-            # Extract the file extension (if any) and categorize it
-            ext=$(basename "$file" | awk -F'.' '{print tolower($NF)}')
-            if [ -z "$ext" ]; then
-                ext="unknown"
-            fi
+        if [[ -f "$file" ]]; then
+            ext="${file##*.}"
+            ext="${ext,,}"
+            [[ -z "$ext" ]] && ext="unknown"
             ((extensions["$ext"]++))
         fi
     done < <(find "$src" -type f -print0)
 
-    # Display detected extensions and counts
     for ext in "${!extensions[@]}"; do
-        echo -e "${GREEN}Detected ${extensions[$ext]} files with .$ext extension"
+        echo -e "${GREEN}Detected ${extensions[$ext]} files with .$ext extension${RESET}"
     done
 
-    echo -e "${GREEN}Total files detected: $(find "$src" -type f | wc -l)"
+    echo -e "${GREEN}Total files detected: $(find "$src" -type f | wc -l)${RESET}"
 
-    # Prompt for the destination directory
-    echo -e "${GREEN}Enter the destination directory path: "
-    read dst
+    echo -e "${YELLOW}Enter destination directory path: ${RESET}"
+    read -r dst
 
-    if [ ! -d "$dst" ]; then
-        echo -e "${RED}Destination directory does not exist. Creating it..."
-        mkdir -p "$dst"
-    fi
+    [[ ! -d "$dst" ]] && echo -e "${BLUE}Creating destination directory...${RESET}" && mkdir -p "$dst"
 
-    # Measure execution time
     start_time=$(date +%s)
 
-    # Move files based on their detected extensions with real progress
+    echo -e "${BLUE}Moving files...${RESET}"
     for ext in "${!extensions[@]}"; do
-        if [ "$ext" = "unknown" ]; then
-            continue
+        [[ "$ext" == "unknown" ]] && continue
+        if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
+            # Correctly format the robocopy command
+            cmd="$MOVE_COMMAND \"$src\" \"$dst\" *.$ext /mov"
+            eval $cmd
+        else
+            # Use rsync or mv for Linux and macOS
+            $MOVE_COMMAND "$src"/*.$ext "$dst"
         fi
-        $MOVE_COMMAND "$src" "$dst" /MOV /E /Z /DCOPY:T /XF "*.$ext" /XD "*"
     done
 
     end_time=$(date +%s)
     execution_time=$((end_time - start_time))
-
     echo -e "${GREEN}DONE. Total files in $dst: $(find "$dst" -type f | wc -l)"
-    echo -e "${GREEN}Execution time: $execution_time seconds"
+    echo -e "${GREEN}Execution time: $execution_time seconds${RESET}"
 
-    echo -e "${YELLOW}Press Enter to continue or 'q' to quit"
-    read choice
-
-    if [ "$choice" = "q" ]; then
-        break
-    fi
+    echo -e "${YELLOW}Press Enter to continue or 'q' to quit${RESET}"
+    read -r choice
+    [[ "$choice" == "q" ]] && break
 done
 
-echo -e "${GREEN}Thank you for using the fileOrg. Have a great day!"
+echo -e "${GREEN}Thank you for using the enhanced fileOrg tool. Have a great day!${RESET}"
